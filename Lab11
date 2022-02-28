@@ -1,0 +1,65 @@
+// Cameron Stepanski
+// May 1, 2020
+// CS1428 Lab
+// Lab 11
+// Description: this program will track a small library
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+//TODO: Create your struct
+
+struct Book
+{
+    string title;
+    int publishingYear;
+    int numPages;
+    int numCopies;
+};
+
+int main()
+{
+    const int SIZE = 3;
+    Book books[SIZE];
+    int total = 0,
+        longestIndex = 0,
+        oldestIndex = 0;
+
+    for(int i = 0; i < SIZE; i++)
+    {
+        //TODO: Prompt/read book information
+        cout << "Book #" << i+1 << endl;
+        cout << "Enter title: ";
+        cin >> books[i].title;
+        cout << "Enter publishing year: ";
+        cin >> books[i].publishingYear;
+        cout << "Enter number of pages: ";
+        cin >> books[i].numPages;
+        cout << "Enter number of copies: ";
+        cin >> books[i].numCopies;
+
+        //adds quanitity current book to total books
+        total += books[i].numCopies;
+
+        //keeps track of the longest books's index
+        if(books[longestIndex].numPages < books[i].numPages)
+            longestIndex = i;
+
+        //keeps track of the oldest book's index
+        if(books[oldestIndex].publishingYear > books[i].publishingYear)
+            oldestIndex = i;
+
+        cout << endl << endl;
+    }
+
+    //TODO: output the total number of books, the name of the oldest book,
+    //      and the name of book with the largest number of pages.
+
+    cout << setw(25) << left << "Total number of books" << ": " << total << endl;
+    cout << setw(25) << left << "Oldest book" << ": " << books[oldestIndex].title << endl;
+    cout << setw(25) << left << "Longest book" << ": " << books[longestIndex].title << endl;
+
+    return 0;
+}
